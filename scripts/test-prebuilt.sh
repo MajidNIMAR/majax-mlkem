@@ -6,7 +6,7 @@ require_docker
 verify_binary
 export COMPOSE_FILE="compose.yml:compose.prebuilt.yml"
 
-echo "[1/4] Building the isolated demonstration with the included x86-64 binary"
+echo "[1/4] Building the standalone service with the included x86-64 binary"
 docker compose up -d --build
 
 echo "[2/4] Waiting for the health check"
@@ -20,4 +20,4 @@ echo "[4/4] Running encapsulation, decapsulation and negative tests"
 docker compose exec -T -e DEMO_MESSAGE="Prebuilt Majax ML-KEM-1024 test" kem-demo \
   node /opt/majax-kem-demo/scripts/verify-demo.mjs
 
-echo "All prebuilt demonstration checks passed."
+echo "All prebuilt engine checks passed."

@@ -17,7 +17,7 @@ command -v docker >/dev/null 2>&1 || {
   exit 1
 }
 
-echo "Building the demonstration from the published Rust source..."
+echo "Building the engine from the published Rust source..."
 docker build --file Dockerfile --tag "$IMAGE" .
 
 cleanup
@@ -36,7 +36,7 @@ do
   attempts=$((attempts + 1))
   if [ "$attempts" -ge 30 ]; then
     docker logs "$CONTAINER" >&2 || true
-    echo "ERROR: source-built demonstration did not become healthy." >&2
+    echo "ERROR: source-built engine did not become healthy." >&2
     exit 1
   fi
   sleep 1

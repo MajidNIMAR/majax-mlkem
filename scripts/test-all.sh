@@ -4,7 +4,7 @@ set -eu
 
 require_docker
 
-echo "[1/4] Building the engine from source and starting the isolated demonstration"
+echo "[1/4] Building the engine from source and starting the standalone service"
 docker compose up -d --build
 
 echo "[2/4] Waiting for the health check"
@@ -18,4 +18,4 @@ echo "[4/4] Running encapsulation, decapsulation and negative tests"
 docker compose exec -T -e DEMO_MESSAGE="Automated Majax ML-KEM-1024 test" kem-demo \
   node /opt/majax-kem-demo/scripts/verify-demo.mjs
 
-echo "All demonstration checks passed."
+echo "All engine checks passed."

@@ -1,6 +1,6 @@
-# Ready-to-use test scripts
+# Engine execution and verification scripts
 
-These scripts operate the standalone single-engine ML-KEM-1024 demonstration.
+These scripts operate the standalone MAJAX ML-KEM service with ML-KEM-1024.
 They never access Majax production keys or data.
 
 ## Requirements
@@ -38,17 +38,17 @@ sh scripts/stop.sh
 Run the complete test in one command.
 
 ```powershell
-.\scripts\majax-demo.ps1 test
+.\scripts\majax-engine.ps1 test
 ```
 
 Other actions are available below.
 
 ```powershell
-.\scripts\majax-demo.ps1 start
-.\scripts\majax-demo.ps1 health
-.\scripts\majax-demo.ps1 run -Message "Text to protect"
-.\scripts\majax-demo.ps1 logs
-.\scripts\majax-demo.ps1 stop
+.\scripts\majax-engine.ps1 start
+.\scripts\majax-engine.ps1 health
+.\scripts\majax-engine.ps1 run -Message "Text to protect"
+.\scripts\majax-engine.ps1 logs
+.\scripts\majax-engine.ps1 stop
 ```
 
 Test the included Linux x86-64 binary separately with one of these commands.
@@ -58,7 +58,7 @@ sh scripts/test-prebuilt.sh
 ```
 
 ```powershell
-.\scripts\majax-demo.ps1 test-prebuilt
+.\scripts\majax-engine.ps1 test-prebuilt
 ```
 
 ## What the complete test verifies

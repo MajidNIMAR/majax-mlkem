@@ -4,4 +4,4 @@ set -eu
 
 require_docker
 docker compose down
-echo "Majax ML-KEM-1024 demonstration stopped."
+echo "MAJAX ML-KEM engine stopped."

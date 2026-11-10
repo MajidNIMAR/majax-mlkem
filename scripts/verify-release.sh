@@ -21,7 +21,7 @@ if command -v cosign >/dev/null 2>&1; then
         cosign verify-blob \
             --bundle "$bundle" \
             --certificate-oidc-issuer "https://token.actions.githubusercontent.com" \
-            --certificate-identity-regexp '^https://github.com/MajidNIMAR/majax-mlkem1024-demo/.github/workflows/release.yml@refs/tags/v' \
+            --certificate-identity-regexp '^https://github.com/MajidNIMAR/majax-mlkem/.github/workflows/release.yml@refs/tags/v' \
             "$artifact"
     done
 else

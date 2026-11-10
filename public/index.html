@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Standalone demonstration of one ML-KEM-1024 engine using ephemeral keys.">
-  <title>ML-KEM-1024 Demonstration</title>
+  <meta name="description" content="MAJAX ML-KEM post-quantum cryptographic engine. Execute an ML-KEM-1024 exchange with ephemeral keys and authenticated encryption.">
+  <title>MAJAX ML-KEM | Post-Quantum Cryptographic Engine</title>
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
@@ -12,9 +12,9 @@
     <header class="masthead">
       <div class="mark" aria-hidden="true">M</div>
       <div>
-        <p class="eyebrow">MAJAX · CRYPTOGRAPHIC DEMONSTRATOR</p>
-        <h1>A live verified ML-KEM-1024 exchange</h1>
-        <p class="intro">This demonstration runs one engine with one ephemeral key pair. It uses no production secret or production data.</p>
+        <p class="eyebrow">MAJAX · POST-QUANTUM CRYPTOGRAPHY</p>
+        <h1>ML-KEM-1024 cryptographic engine</h1>
+        <p class="intro">Execute key generation, encapsulation and decapsulation, followed by HKDF-SHA-256 and AES-256-GCM protection. Each request uses fresh ephemeral material.</p>
       </div>
     </header>
 
@@ -23,9 +23,9 @@
         <p class="step">ON-DEMAND EXECUTION</p>
         <h2 id="demo-title">Encapsulation and decapsulation</h2>
       </div>
-      <label for="message">Text protected during the demonstration</label>
+      <label for="message">Message to protect with the engine</label>
       <div class="action-row">
-        <input id="message" maxlength="512" value="Majax cryptographic demonstration" autocomplete="off">
+        <input id="message" maxlength="512" value="MAJAX ML-KEM authenticated exchange" autocomplete="off">
         <button id="run" type="button">Run</button>
       </div>
       <p class="privacy">The text remains in process memory during execution and is not stored.</p>

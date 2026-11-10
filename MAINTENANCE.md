@@ -5,8 +5,8 @@ targets below express project practice and are not contractual service levels.
 
 ## Branches
 
-`main` is the canonical public branch. It contains the original single-engine
-demonstrator, the expanded library and the complete ordered engineering record.
+`main` is the canonical public branch. It contains the standalone ML-KEM-1024
+execution path, the multi-parameter library and the complete ordered engineering record.
 Future work reaches `main` through reviewed commits or pull requests and must
 never silently rewrite published history.
 

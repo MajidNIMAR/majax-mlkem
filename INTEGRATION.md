@@ -12,7 +12,7 @@ release build.
 
 ```toml
 [dependencies]
-majax-mlkem = { git = "https://github.com/MajidNIMAR/majax-mlkem1024-demo.git", rev = "REVISION_YOU_REVIEWED", package = "majax-mlkem", default-features = false }
+majax-mlkem = { git = "https://github.com/MajidNIMAR/majax-mlkem.git", rev = "REVISION_YOU_REVIEWED", package = "majax-mlkem", default-features = false }
 ```
 
 The `native` default feature enables the upstream AVX2 or AArch64/NEON dispatch

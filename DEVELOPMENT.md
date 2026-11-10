@@ -5,7 +5,7 @@ individual commits and engineering notes remain available so reviewers can
 inspect each stage independently.
 
 The work started from the exact ML-KEM-1024 behavior verified by the original
-demonstrator. Every extension preserves that behavior through automated
+standalone execution path. Every extension preserves that behavior through automated
 non-regression tests while expanding the supported surface.
 
 ## Completed milestones
@@ -27,7 +27,7 @@ public operations.
 - boundary-length and cross-parameter negative matrices run in CI
 - libFuzzer targets exercise round trips, malformed objects and domain separation
 - Valgrind checks the dedicated assurance driver for memory errors
-- DudeCT compares decapsulation timing distributions across secret-key classes
+- DudeCT compares valid and altered ciphertext decapsulation timings with one private key
 - portable builds exclude architecture-specific code through a feature boundary
 - native builds dispatch to AVX2 or AArch64/NEON when the current CPU supports it
 - comparative KeyGen, Encaps and Decaps measurements run on x86-64 and AArch64

@@ -4,6 +4,18 @@ All notable changes to the public Majax ML-KEM project are recorded here.
 
 ## Unreleased
 
+### MAJAX ML-KEM project identity
+
+- presented the project as a post-quantum cryptographic engine with a Rust
+  library, JSON CLI and standalone HTTP integration
+- named the public repository `majax-mlkem`, covering all three supported
+  ML-KEM parameter sets with ML-KEM-1024 as the default
+- refreshed the web interface, documentation, workflow title and repository links
+- added `scripts/majax-engine.ps1` as the PowerShell entry point, retaining the
+  existing command for compatibility
+- aligned future release verification with the new repository identity
+- retained the cryptographic library, CLI protocol, encodings and derivation domains
+
 ### Main branch consolidation
 
 - promoted the eight completed engineering milestones to `main`

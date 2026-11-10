@@ -1,15 +1,16 @@
 # Security policy
 
-## Demonstration scope
+## Engine and integration scope
 
-This repository contains an isolated demonstration of one ML-KEM-1024 engine.
-It is not the Majax production implementation and it does not expose the Majax
-service architecture. It contains no production key, token, credential, user
-record, endpoint configuration or operational secret.
+MAJAX ML-KEM provides a Rust library and JSON CLI for ML-KEM-512, ML-KEM-768
+and ML-KEM-1024, plus a standalone HTTP execution service using ML-KEM-1024,
+HKDF-SHA-256 and AES-256-GCM. The public engine can be integrated independently
+of Majax Messenger. It contains no production key, token, credential, user
+record, endpoint configuration or operational secret from that service.
 
 Successful execution proves only the properties checked by the included test
 suite. It does not constitute an audit, certification or security assessment of
-Majax or of any system using this demonstrator.
+Majax or of any system using this engine.
 
 ## Supported versions
 
@@ -37,9 +38,12 @@ real credentials, production data or secrets in the report.
 The service binds to loopback by default. Public exposure requires a separate
 TLS reverse proxy, explicit rate limiting and normal operational monitoring.
 
-The private key and shared secrets exist only inside a short-lived execution.
-The HTTP API does not return them and the demonstration does not persist them.
+In the HTTP service, the private key and shared secrets exist only inside a
+short-lived execution. The HTTP API does not return them or persist them.
+The Rust library and JSON CLI deliberately provide key material and shared
+secrets to their caller for integration; the caller is responsible for their
+storage, use and lifetime as described in `INTEGRATION.md`.
 
-The supplied x86-64 binary is authenticated by the checksum recorded in
+The supplied x86-64 binary can be checked against the checksum recorded in
 `CHECKSUMS.sha256`. Users who require an independently built artifact should use
 the default source-based Docker build.

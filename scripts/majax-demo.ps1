@@ -1,7 +1,7 @@
 param(
     [ValidateSet('start', 'health', 'run', 'test', 'test-prebuilt', 'logs', 'stop')]
     [string]$Action = 'test',
-    [string]$Message = 'Majax ML-KEM-1024 demonstration'
+    [string]$Message = 'MAJAX ML-KEM authenticated exchange'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -33,7 +33,7 @@ function Wait-Health {
         Start-Sleep -Seconds 1
     }
     docker compose logs --tail=80 kem-demo
-    throw 'The demonstration did not become healthy within 30 seconds.'
+    throw 'The engine did not become healthy within 30 seconds.'
 }
 
 function Start-Demo {
@@ -50,7 +50,7 @@ function Invoke-Demo {
 switch ($Action) {
     'start' {
         Start-Demo
-        Write-Host 'Majax ML-KEM-1024 demonstration is ready at http://127.0.0.1:6062'
+        Write-Host 'MAJAX ML-KEM engine is ready at http://127.0.0.1:6062'
     }
     'health' {
         docker compose exec -T kem-demo node -e "fetch('http://127.0.0.1:8080/api/health').then(async r=>{const j=await r.json();console.log(JSON.stringify(j,null,2));process.exit(r.ok&&j.status==='ok'&&j.algorithm==='ML-KEM-1024'&&j.engine_count===1?0:1)}).catch(e=>{console.error(e.message);process.exit(1)})"
@@ -58,7 +58,7 @@ switch ($Action) {
     }
     'run' { Invoke-Demo }
     'test' {
-        Write-Host '[1/3] Building and starting the isolated demonstration'
+        Write-Host '[1/3] Building and starting the standalone service'
         Start-Demo
         Write-Host '[2/3] Verifying the single-engine scope'
         docker compose exec -T kem-demo node -e "fetch('http://127.0.0.1:8080/api/health').then(async r=>{const j=await r.json();if(!r.ok||j.status!=='ok'||j.algorithm!=='ML-KEM-1024'||j.engine_count!==1)throw new Error('invalid health response');console.log('PASS - one ML-KEM-1024 engine is active')}).catch(e=>{console.error('FAIL - '+e.message);process.exit(1)})"
@@ -66,7 +66,7 @@ switch ($Action) {
         Write-Host '[3/3] Running encapsulation, decapsulation and negative tests'
         $Message = 'Automated Majax ML-KEM-1024 test'
         Invoke-Demo
-        Write-Host 'All demonstration checks passed.'
+        Write-Host 'All engine checks passed.'
     }
     'test-prebuilt' {
         Assert-Binary
@@ -76,7 +76,7 @@ switch ($Action) {
         for ($Attempt = 1; $Attempt -le 30; $Attempt++) {
             docker compose -f compose.yml -f compose.prebuilt.yml exec -T kem-demo node -e "fetch('http://127.0.0.1:8080/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
             if ($LASTEXITCODE -eq 0) { break }
-            if ($Attempt -eq 30) { throw 'The prebuilt demonstration did not become healthy.' }
+            if ($Attempt -eq 30) { throw 'The prebuilt engine did not become healthy.' }
             Start-Sleep -Seconds 1
         }
         Write-Host '[2/3] Verifying the single-engine scope'
@@ -85,11 +85,11 @@ switch ($Action) {
         Write-Host '[3/3] Running encapsulation, decapsulation and negative tests'
         docker compose -f compose.yml -f compose.prebuilt.yml exec -T -e "DEMO_MESSAGE=Prebuilt Majax ML-KEM-1024 test" kem-demo node /opt/majax-kem-demo/scripts/verify-demo.mjs
         if ($LASTEXITCODE -ne 0) { throw 'The prebuilt cryptographic verification failed.' }
-        Write-Host 'All prebuilt demonstration checks passed.'
+        Write-Host 'All prebuilt engine checks passed.'
     }
     'logs' { docker compose logs --tail=200 -f kem-demo }
     'stop' {
         docker compose down
-        if ($LASTEXITCODE -ne 0) { throw 'Unable to stop the demonstration.' }
+        if ($LASTEXITCODE -ne 0) { throw 'Unable to stop the engine.' }
     }
 }
